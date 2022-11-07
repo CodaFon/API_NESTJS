@@ -7,9 +7,14 @@ import { UsersModule } from './users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { FriendsModule } from './friends/friends.module';
 import { ConversationsModule } from './conversations/conversations.module';
-import { User } from './users/user.entity/user.entity';
-import { Friend } from './friends/friend.entity/friend.entity';
-import { ConversationEntity } from './conversations/conversation.entity/conversation.entity';
+import { User } from './users/entities/user.entity';
+import { Friend } from './friends/entities/friend.entity';
+import { ConversationEntity } from './conversations/entities/conversation.entity';
+import { RoleModule } from './role/role.module';
+import { StateModule } from './state/state.module';
+import { AttachementModule } from './attachement/attachement.module';
+import { MessageModule } from './message/message.module';
+import { Role } from './role/entities/role.entity';
 
 @Module({
   imports: [
@@ -23,7 +28,7 @@ import { ConversationEntity } from './conversations/conversation.entity/conversa
         username: configService.get<string>('DB_USERNAME'),
         password: configService.get<string>('DB_PASSWORD'),
         database: configService.get<string>('DB_NAME'),
-        entities: [User, Friend, ConversationEntity],
+        entities: [Role, User, Friend, ConversationEntity],
         synchronize: false,
         logging: configService.get<boolean>('DB_LOGGING'),
       }),
@@ -32,6 +37,10 @@ import { ConversationEntity } from './conversations/conversation.entity/conversa
     UsersModule,
     FriendsModule,
     ConversationsModule,
+    RoleModule,
+    StateModule,
+    AttachementModule,
+    MessageModule,
   ],
   controllers: [AppController],
   providers: [AppService],
