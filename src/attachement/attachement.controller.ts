@@ -1,8 +1,18 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { AttachementService } from './attachement.service';
 import { CreateAttachementDto } from './dto/create-attachement.dto';
 import { UpdateAttachementDto } from './dto/update-attachement.dto';
 
+@ApiTags('attachement')
 @Controller('attachement')
 export class AttachementController {
   constructor(private readonly attachementService: AttachementService) {}
@@ -23,7 +33,10 @@ export class AttachementController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateAttachementDto: UpdateAttachementDto) {
+  update(
+    @Param('id') id: string,
+    @Body() updateAttachementDto: UpdateAttachementDto,
+  ) {
     return this.attachementService.update(+id, updateAttachementDto);
   }
 

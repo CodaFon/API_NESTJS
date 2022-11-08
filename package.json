@@ -23,9 +23,14 @@
       "migration:run": "npm run typeorm -- --dataSource=./database/config/typeorm-cli.config.ts migration:run",
       "migration:revert": "npm run typeorm -- --dataSource=./database/config/typeorm-cli.config.ts migration:revert",
       "migration:create": "npm run typeorm -- migration:create ./database/migrations/${MIGRATION_NAME}",
-      "migration:revert:all": "sh ./database/migrations/run.sh"
+      "migration:revert:all": "sh ./database/migrations/run.sh",
+      "seed:config": "ts-node ./node_modules/typeorm-seeding/dist/cli.js config -n ./database/config/typeorm-cli.seed.ts",
+      "seed:run": "ts-node ./node_modules/typeorm-seeding/dist/cli.js seed -n ./database/config/typeorm-cli.seed.ts",
+      "seed": "ts-node ./node_modules/typeorm-extension/dist/cli/index.js seed -d ./database/config/typeorm-cli.seed.ts"
    },
    "dependencies": {
+      "@concepta/typeorm-seeding": "^4.0.0-beta.0",
+      "@faker-js/faker": "^7.6.0",
       "@nestjs/common": "^9.0.0",
       "@nestjs/config": "^2.2.0",
       "@nestjs/core": "^9.0.0",
@@ -33,6 +38,8 @@
       "@nestjs/platform-express": "^9.0.0",
       "@nestjs/swagger": "^6.1.3",
       "@nestjs/typeorm": "^9.0.1",
+      "@types/bcrypt": "^5.0.0",
+      "bcrypt": "^5.1.0",
       "class-transformer": "^0.5.1",
       "class-validator": "^0.13.2",
       "cookie-parser": "^1.4.6",
@@ -44,7 +51,9 @@
       "reflect-metadata": "^0.1.13",
       "rimraf": "^3.0.2",
       "rxjs": "^7.2.0",
-      "typeorm": "0.3.10"
+      "typeorm": "0.3.10",
+      "typeorm-extension": "^2.2.12",
+      "typeorm-seeding": "^1.6.1"
    },
    "devDependencies": {
       "@nestjs/cli": "^9.0.0",
