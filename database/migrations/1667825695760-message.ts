@@ -26,7 +26,7 @@ export class message1667825695760 implements MigrationInterface {
             isNullable: false,
           },
           {
-            name: 'cnversation_id',
+            name: 'conversation_id',
             type: 'varchar',
             isNullable: false,
           },
@@ -63,7 +63,7 @@ export class message1667825695760 implements MigrationInterface {
     await queryRunner.createForeignKey(
       'messages',
       new TableForeignKey({
-        columnNames: ['cnversation_id'],
+        columnNames: ['conversation_id'],
         referencedColumnNames: ['id'],
         referencedTableName: 'conversations',
         onDelete: 'CASCADE',
