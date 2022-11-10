@@ -1,23 +1,25 @@
 import { Controller, Get, Param, Body, Post } from '@nestjs/common';
 import { UsersService } from './users.service';
-import { CreateUserDTO } from './DTO/createUser.dto';
+import { CreateUserDTO } from './dto/createUser.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('users')
 @Controller('users')
 export class UsersController {
-  constructor(private service: UsersService) {}
+  constructor(private userService: UsersService) {}
 
   @Post()
   create(@Body() createUserDto: CreateUserDTO) {
-    return this.service.createUser(createUserDto);
+    return this.userService.createUser(createUserDto);
   }
 
   @Get()
   findAll() {
-    return this.service.findAll();
+    return this.userService.findAll();
   }
 
   @Get(':id')
   findById(@Param() params) {
-    return this.service.findById(params.id);
+    return this.userService.findById(params.id);
   }
 }

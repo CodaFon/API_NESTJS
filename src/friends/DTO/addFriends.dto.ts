@@ -1,9 +1,19 @@
+import { ApiProperty } from '@nestjs/swagger';
+import { IsNotEmpty, IsUUID } from 'class-validator';
+
 export class AddFriendsDto {
-  id: string;
+  @ApiProperty()
+  @IsNotEmpty()
+  @IsUUID()
   user_id: string;
-  user_id_friend: string;
-  friend_status: string;
-  created_at: Date;
-  updated_at: Date;
-  deleted_at: Date;
+
+  @ApiProperty()
+  @IsNotEmpty()
+  @IsUUID()
+  friend_id: string;
+
+  @ApiProperty()
+  @IsNotEmpty()
+  @IsUUID()
+  state_id: string;
 }

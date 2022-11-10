@@ -7,9 +7,18 @@ import { UsersModule } from './users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { FriendsModule } from './friends/friends.module';
 import { ConversationsModule } from './conversations/conversations.module';
-import { User } from './users/user.entity/user.entity';
-import { Friend } from './friends/friend.entity/friend.entity';
-import { ConversationEntity } from './conversations/conversation.entity/conversation.entity';
+import { User } from './users/entities/user.entity';
+import { RoleModule } from './role/role.module';
+import { StateModule } from './state/state.module';
+import { AttachementModule } from './attachement/attachement.module';
+import { MessageModule } from './message/message.module';
+import { Role } from './role/entities/role.entity';
+import { Friend } from './friends/entities/friend.entity';
+import { State } from './state/entities/state.entity';
+import { ConversationEntity } from './conversations/entities/conversation.entity';
+import { Message } from './message/entities/message.entity';
+import { Attachement } from './attachement/entities/attachement.entity';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -23,7 +32,15 @@ import { ConversationEntity } from './conversations/conversation.entity/conversa
         username: configService.get<string>('DB_USERNAME'),
         password: configService.get<string>('DB_PASSWORD'),
         database: configService.get<string>('DB_NAME'),
-        entities: [User, Friend, ConversationEntity],
+        entities: [
+          Role,
+          User,
+          State,
+          Friend,
+          ConversationEntity,
+          Message,
+          Attachement,
+        ],
         synchronize: false,
         logging: configService.get<boolean>('DB_LOGGING'),
       }),
@@ -32,6 +49,11 @@ import { ConversationEntity } from './conversations/conversation.entity/conversa
     UsersModule,
     FriendsModule,
     ConversationsModule,
+    RoleModule,
+    StateModule,
+    AttachementModule,
+    MessageModule,
+    // AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
