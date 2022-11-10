@@ -10,13 +10,14 @@ import {
 import { StateService } from './state.service';
 import { CreateStateDto } from './dto/create-state.dto';
 import { UpdateStateDto } from './dto/update-state.dto';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiExcludeEndpoint, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('states')
 @Controller('state')
 export class StateController {
   constructor(private readonly stateService: StateService) {}
 
+  @ApiExcludeEndpoint()
   @Post()
   create(@Body() createStateDto: CreateStateDto) {
     return this.stateService.create(createStateDto);
@@ -32,11 +33,13 @@ export class StateController {
     return this.stateService.findOne(+id);
   }
 
+  @ApiExcludeEndpoint()
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateStateDto: UpdateStateDto) {
     return this.stateService.update(+id, updateStateDto);
   }
 
+  @ApiExcludeEndpoint()
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.stateService.remove(+id);

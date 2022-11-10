@@ -10,7 +10,7 @@ import {
 import { MessageService } from './message.service';
 import { CreateMessageDto } from './dto/create-message.dto';
 import { UpdateMessageDto } from './dto/update-message.dto';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiExcludeEndpoint, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('messages')
 @Controller('message')
@@ -32,11 +32,13 @@ export class MessageController {
     return this.messageService.findOne(+id);
   }
 
+  @ApiExcludeEndpoint()
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateMessageDto: UpdateMessageDto) {
     return this.messageService.update(+id, updateMessageDto);
   }
 
+  @ApiExcludeEndpoint()
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.messageService.remove(+id);

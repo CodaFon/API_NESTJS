@@ -9,7 +9,7 @@ export class UserSeed implements Seeder {
     const userRepository = dataSource.getRepository(User);
 
     const salt = await bcrypt.genSalt();
-    const password = await bcrypt.hash(faker.internet.password(), salt);
+    const password = await bcrypt.hash('test_dev@codafon', salt);
 
     for (let index = 0; index < 10; index++) {
       const userData = {
@@ -19,11 +19,11 @@ export class UserSeed implements Seeder {
         birthDate: faker.date.birthdate(),
         password: password,
         role_id: faker.helpers.arrayElement([
-          '44e2f8e0-eacc-41f4-a332-a244e1a79209',
+          // '44e2f8e0-eacc-41f4-a332-a244e1a79209',
           '6bdbe0de-06b7-4e17-888c-7ad03df45548',
-          'c2abf02e-d69c-4df5-b1be-8ecb23b81469',
+          // 'c2abf02e-d69c-4df5-b1be-8ecb23b81469',
         ]),
-        active: false,
+        active: true,
         created_at: faker.date.past(),
       };
 

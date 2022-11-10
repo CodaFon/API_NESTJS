@@ -7,7 +7,7 @@ import {
   Param,
   Delete,
 } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiExcludeEndpoint, ApiTags } from '@nestjs/swagger';
 import { AttachementService } from './attachement.service';
 import { CreateAttachementDto } from './dto/create-attachement.dto';
 import { UpdateAttachementDto } from './dto/update-attachement.dto';
@@ -32,6 +32,7 @@ export class AttachementController {
     return this.attachementService.findOne(+id);
   }
 
+  @ApiExcludeEndpoint()
   @Patch(':id')
   update(
     @Param('id') id: string,
@@ -40,6 +41,7 @@ export class AttachementController {
     return this.attachementService.update(+id, updateAttachementDto);
   }
 
+  @ApiExcludeEndpoint()
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.attachementService.remove(+id);

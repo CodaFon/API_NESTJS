@@ -17,13 +17,13 @@ export class Friend {
   @JoinColumn({ name: 'user_id' })
   user_id: User[];
 
-  @ManyToOne(() => User, (user) => user.id)
-  @JoinColumn({ name: 'friend_id' })
-  friend_id: User[];
-
   @ManyToOne(() => State, (state) => state.id)
   @JoinColumn({ name: 'state_id' })
   state_id: string;
+
+  @ManyToOne(() => User, (user) => user.id)
+  @JoinColumn({ name: 'friend_id' })
+  friend_id: User[];
 
   @Column({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP' })
   created_at: Date;

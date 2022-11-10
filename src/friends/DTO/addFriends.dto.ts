@@ -10,7 +10,7 @@ export class AddFriendsDto {
   @ApiProperty()
   @IsNotEmpty()
   @IsUUID()
-  user_id_friend: string;
+  friend_id: string;
 
   @ApiProperty()
   @IsNotEmpty()
